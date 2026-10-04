@@ -30,7 +30,7 @@ de una pequeña cadena de restaurantes para realizar pedidos de comida a domicil
 Hay muchas personas que trabajan lejos de sus casas y tienen largas jornadas de trabajo.
 Como consecuencia no tienen tiempo para hacer la compra ni para hacer la comida/cena.
 Una manera de resolver el problema es solicitar comida a domicilio a cadenas de comida rápida,
-o a través de apps de movil. Mi aplicación intenta ofrecer ese servicio para una cadena de restaurantes
+o a través de apps de móvil. Mi aplicación intenta ofrecer ese servicio para una cadena de restaurantes
 de proximidad.
 
 ---
@@ -53,32 +53,32 @@ a domicilio (cadena de fast-food, food delivery, etc)
 
 ### Imprescindibles (sin esto la app no tiene sentido)
 
-| # | Funcionalidad |
-|---|---------------|
+| #  | Funcionalidad |
+|----|---------------|
 | F1 | Busqueda/Selección de local más cercano |
 | F2 | Consulta del menú del día/platos/comidas disponibles |
 | F3 | Selección de platos que solicitas |
 | F4 | Creacion de pedido |
+| F5 | Creacion de perfiles de usuario |
 
 ### Opcionales (si sobra tiempo)
 
-| # | Funcionalidad |
-|---|---------------|
-| O1 | Creacion de perfiles de usuario |
-| O2 | Gestión de pagos |
-| O3 | Creación de sistema de reseñas / recomendaciones |
+| #  | Funcionalidad |
+|----|---------------|
+| O1 | Gestión de pagos |
+| O2 | Creación de sistema de reseñas / recomendaciones |
 
 ---
 
 ## 5 · Pantallas
 
-| Pantalla | Para qué sirve                             | Se llega desde |
-|----------|--------------------------------------------|----------------|
-| Pantalla de inicio | Pantalla de seleccion de menu              | (arranque) |
-| Pantalla de acceso/Registro de usuario | Acceso/Registro de usuario                 | Menú desplegable/boton |
-| Pantalla de seleccion de local | Selección del local al que hacer el pedido | Menú desplegable/boton |
-| Pantalla de consulta de platos | Consulta y selección de platos a pedir     | Menú desplegable/boton |
-| Pantalla de pedido | Revisar y confirmar el pedido              | Menú desplegable/boton |
+| Pantalla                               | Para qué sirve                             | Se llega desde |
+|----------------------------------------|--------------------------------------------|----------------|
+| Pantalla de inicio                     | Iniciar Pedido / Iniciar sesion de usuario | (arranque) |
+| Pantalla de Acceso/Registro de usuario | Acceso/Registro de usuario                 | Menú desplegable/boton |
+| Pantalla de seleccion de local         | Selección del local al que hacer el pedido | Menú desplegable/boton |
+| Pantalla de consulta de platos         | Consulta y selección de platos a pedir     | Menú desplegable/boton |
+| Pantalla de pedido                     | Revisar y confirmar el pedido              | Menú desplegable/boton |
 
 ---
 
@@ -86,7 +86,11 @@ a domicilio (cadena de fast-food, food delivery, etc)
 
 > Dibuja las pantallas principales. A mano y fotografiado es válido.
 > Pega aquí las imágenes o indica el nombre de los archivos adjuntos.
-
+![Pantalla_001.png](res/Pantalla_001.png) ![Pantalla_002.png](res/Pantalla_002.png)
+![Pantalla_003.png](res/Pantalla_003.png) ![Pantalla_004.png](res/Pantalla_004.png)
+![Pantalla_005.png](res/Pantalla_005.png) ![Pantalla_006.png](res/Pantalla_006.png)
+![Pantalla_007.png](res/Pantalla_007.png) ![Pantalla_008.png](res/Pantalla_008.png)
+![Pantalla_Menu.png](res/Pantalla_Menu.png)
 ---
 
 ## 7 · Qué datos guarda la app
@@ -115,9 +119,10 @@ a domicilio (cadena de fast-food, food delivery, etc)
 
 ## 9 · Riesgos
 
-| Lo que me preocupa | Plan B |
-|--------------------|--------|
-| Complejidad de implementacion de un sistema de pagos | Funcionalidad Opcional(no se implementa) |
+| Lo que me preocupa                                                   | Plan B                                   |
+|----------------------------------------------------------------------|------------------------------------------|
+| Complejidad de implementacion de un sistema de pagos                 | Funcionalidad Opcional(no se implementa) |
+| Demasiadas pantallas que implementar para una funcionalidad completa | Simplificar / Reducir Funciones          |
 
 ---
 
