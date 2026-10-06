@@ -53,13 +53,13 @@ a domicilio (cadena de fast-food, food delivery, etc)
 
 ### Imprescindibles (sin esto la app no tiene sentido)
 
-| #  | Funcionalidad |
-|----|---------------|
+| #  | Funcionalidad                           |
+|----|-----------------------------------------|
 | F1 | Busqueda/Selección de local más cercano |
-| F2 | Consulta del menú del día/platos/comidas disponibles |
-| F3 | Selección de platos que solicitas |
-| F4 | Creacion de pedido |
-| F5 | Creacion de perfiles de usuario |
+| F2 | Consulta de comidas disponibles         |
+| F3 | Selección de platos que solicitas       |
+| F4 | Creacion de pedido                      |
+| F5 | Creacion de perfiles de usuario         |
 
 ### Opcionales (si sobra tiempo)
 
@@ -72,13 +72,12 @@ a domicilio (cadena de fast-food, food delivery, etc)
 
 ## 5 · Pantallas
 
-| Pantalla                               | Para qué sirve                             | Se llega desde |
-|----------------------------------------|--------------------------------------------|----------------|
-| Pantalla de inicio                     | Iniciar Pedido / Iniciar sesion de usuario | (arranque) |
-| Pantalla de Acceso/Registro de usuario | Acceso/Registro de usuario                 | Menú desplegable/boton |
-| Pantalla de seleccion de local         | Selección del local al que hacer el pedido | Menú desplegable/boton |
-| Pantalla de consulta de platos         | Consulta y selección de platos a pedir     | Menú desplegable/boton |
-| Pantalla de pedido                     | Revisar y confirmar el pedido              | Menú desplegable/boton |
+| Pantalla                               | Para qué sirve                             | Se llega desde                   |
+|----------------------------------------|--------------------------------------------|----------------------------------|
+| Pantalla de Acceso/Registro de usuario | Inicio sesion/Registro de usuario          | Inicio/Menú desplegable/boton    |
+| Pantalla de seleccion de local         | Selección del local al que hacer el pedido | Menú desplegable/boton           |
+| Pantalla Principal / Lista de platos   | Consulta y selección de platos a pedir     | Menú desplegable/boton (Home)    |
+| Pantalla de pedido                     | Revisar y confirmar el pedido              | Menú desplegable/boton (Carrito) |
 
 ---
 
@@ -91,6 +90,7 @@ a domicilio (cadena de fast-food, food delivery, etc)
 ![Pantalla_005.png](res/Pantalla_005.png) ![Pantalla_006.png](res/Pantalla_006.png)
 ![Pantalla_007.png](res/Pantalla_007.png) ![Pantalla_008.png](res/Pantalla_008.png)
 ![Pantalla_Menu.png](res/Pantalla_Menu.png)
+![Propuesta_Minima.png](res/Propuesta_Minima.png)
 ---
 
 ## 7 · Qué datos guarda la app
@@ -108,12 +108,12 @@ a domicilio (cadena de fast-food, food delivery, etc)
 
 > Apartado obligatorio: ninguna casilla puede quedar vacía.
 
-| Requisito | Dónde encaja en tu app | Tema |
-|-----------|------------------------|------|
-| **Persistencia de datos** — la información sobrevive al cerrar la app | Lista de comidas?? Informacion pedido?? | 4 |
-| **Servicio web** — la app consulta datos por internet | Lista de comidas/platos | 5 |
-| **Sensor o localización** | Mapa de localización de locales | 6 |
-| **Contenido multimedia** — foto, audio, vídeo o animación | Imagenes de platos | 7 |
+| Requisito | Dónde encaja en tu app                                                            | Tema |
+|-----------|-----------------------------------------------------------------------------------|------|
+| **Persistencia de datos** — la información sobrevive al cerrar la app | La lista de comidas se guardará mediante la API que nos proporcionará el profesor | 4 |
+| **Servicio web** — la app consulta datos por internet | La aplicacion consultará las comidas guardadas con la API que nos da el profesor  | 5 |
+| **Sensor o localización** | Mapa de localización de locales                                                   | 6 |
+| **Contenido multimedia** — foto, audio, vídeo o animación | Imagenes de platos                                                                | 7 |
 
 ---
 
