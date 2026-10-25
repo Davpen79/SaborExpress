@@ -3,11 +3,14 @@ package com.davpen79.saborexpress.ui.component
 import android.graphics.drawable.Icon
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -38,7 +41,12 @@ fun BotonPrincipal(
 ) {
     Button(
         onClick = data.onBotonClick,
-        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(10.dp),
+        modifier = modifier,
+        contentPadding = PaddingValues(
+            horizontal = 10.dp,
+            vertical = 8.dp
+        ),
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(0xFFFF9800),
             contentColor = Color.White
