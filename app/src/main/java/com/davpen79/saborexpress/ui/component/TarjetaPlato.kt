@@ -2,6 +2,7 @@ package com.davpen79.saborexpress.ui.component
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -47,12 +49,15 @@ fun TarjetaPlato(
     data: TarjetaPlatoData,
     modifier: Modifier = Modifier
 ){
-    Card(modifier = modifier.fillMaxWidth()) {
+    Card(shape = RoundedCornerShape(10.dp) ,
+        modifier = Modifier.fillMaxWidth()
+        .border(width = 1.dp, Color.Black, shape = RoundedCornerShape(10.dp)) ) {
         Row(verticalAlignment =  Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp)) {
+                .padding(10.dp)
+                .height(80.dp)) {
 
             Image(
                 painter = painterResource(data.imagenPlato),
@@ -64,7 +69,7 @@ fun TarjetaPlato(
             ColumnaDescripcion(
                 data = ColumnaDescripcionData(
                     titulo = data.nombrePlato,
-                    descripcion = data.descripcion
+                    descripcion = data.descripcion,
                 ),
                 modifier = Modifier.weight(1f)
             )
@@ -76,7 +81,7 @@ fun TarjetaPlato(
             Button(
                 onClick = data.onAnhadir,
                 modifier = Modifier
-                    .padding(start = 8.dp)
+                    .padding(start = 4.dp)
                     .size(60.dp),
                 shape = RoundedCornerShape(5.dp),
                 contentPadding = PaddingValues(4.dp),
@@ -108,7 +113,7 @@ fun TarjetaPlatoPreview(){
         TarjetaPlato(
             data = TarjetaPlatoData(
                 imagenPlato = R.drawable.plato002,
-                nombrePlato = "Hamburguesa",
+                nombrePlato = "Hamburguesa con Queso y Lechuga",
                 descripcion = "Descripcion de una suculenta hamburguesa de ternera con queso y lechuga",
                 precio = "8€",
                 onAnhadir = {},

@@ -1,6 +1,7 @@
 package com.davpen79.saborexpress.ui.component
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,11 +25,18 @@ fun ColumnaDescripcion(
     Column(modifier = modifier) {
         Text(text = data.titulo,
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold)
+            fontWeight = FontWeight.ExtraBold,
+            maxLines = 1,
+            autoSize = TextAutoSize.StepBased(
+                minFontSize = 15.sp,
+                maxFontSize = 20.sp,
+                stepSize = 1.sp
+            ),
+            overflow = TextOverflow.Ellipsis)
 
         Text(text = data.descripcion,
             fontSize = 15.sp,
-            maxLines = 2,
+            //maxLines = 2,
             overflow = TextOverflow.Ellipsis)
     }
 

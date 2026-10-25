@@ -3,4 +3,7 @@
     <string name="imagen_de_plato">Imagen de plato</string>
     <string name="carrito">Carrito</string>
     <string name="anhadir">Añadir</string>
+    <string name="backButton">Back Button</string>
+    <string name="favoriteButton">Boton Favoritos</string>
+    <string name="icono">Icono</string>
 </resources>
