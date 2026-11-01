@@ -28,6 +28,8 @@ import com.davpen79.saborexpress.ui.component.BoxImagenPlato
 import com.davpen79.saborexpress.ui.component.BoxImagenPlatoData
 import com.davpen79.saborexpress.ui.component.ColumnaDescripcion
 import com.davpen79.saborexpress.ui.component.ColumnaDescripcionData
+import com.davpen79.saborexpress.ui.component.RowPrecio
+import com.davpen79.saborexpress.ui.component.RowPrecioData
 
 data class PantallaDetalleData(
     val imagenPlato: Int,
@@ -41,6 +43,7 @@ data class PantallaDetalleData(
     //val tituloAlergenos: String,
     val alergenos: String,
     val precio: String,
+    val moneda: Int,
     val onBotonClick: () -> Unit,
     val iconoBoton: Int,
     val textoBoton: String
@@ -72,7 +75,7 @@ fun PantallaDetalle(
             ),
             modifier = Modifier.fillMaxWidth()
         )
-
+        //CREO QUE PODRIA SER UNA COLUMN CON SCROLL: SON POCOS COMPONENTES Y SU NUMERO NO VA A CRECER
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -121,7 +124,9 @@ fun PantallaDetalle(
                     Text(
                         data.calorias,
                         textAlign = TextAlign.Right,
-                        modifier = Modifier.padding(16.dp).align(Alignment.CenterVertically)
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .align(Alignment.CenterVertically)
                     )
                 }
             }
@@ -142,7 +147,9 @@ fun PantallaDetalle(
         //Spacer(modifier = Modifier.weight(1f))
 
         Column(modifier = Modifier) {
-            Row(modifier = Modifier.align(Alignment.End)) {
+            Row(modifier = Modifier
+                .align(Alignment.End)
+                .padding(6.dp)) {
                 Text(
                     text = stringResource(R.string.precio),
                     fontSize = 16.sp,
@@ -150,13 +157,17 @@ fun PantallaDetalle(
                     modifier = Modifier.align(Alignment.CenterVertically)
                 )
 
-                Text(
-                    data.precio,
-                    textAlign = TextAlign.Right,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    modifier = Modifier.padding(16.dp).align(Alignment.CenterVertically)
+                RowPrecio(
+                    data = RowPrecioData(
+                        precioArticulo = data.precio,
+                        simboloMoneda = data.moneda
+                    ),
+                    modifier = Modifier.padding(8.dp),
+                    precioFontSize = 20.sp,
+                    monedaFontSize = 22.sp,
+                    monedaFontWeight = FontWeight.ExtraBold
                 )
+
             }
             BotonPrincipal(
                 data = BotonPrincipalData(
@@ -164,7 +175,9 @@ fun PantallaDetalle(
                     texto = data.textoBoton,
                     onBotonClick = data.onBotonClick
                 ),
-                modifier = Modifier.padding(6.dp).fillMaxWidth()
+                modifier = Modifier
+                    .padding(6.dp)
+                    .fillMaxWidth()
             )
 
         }
@@ -186,7 +199,8 @@ fun PantallaDetallePreview() {
             calorias = "453 Kcal",
             //tituloAlergenos = "INFORMACION DE ALERGENOS",
             alergenos = "Gluten(Trigo), Lacteos(Leche). Puede contener trazas de soja",
-            precio = "8€",
+            precio = "8",
+            moneda = R.string.simboloMoneda,
             onIconoDerecho = {},
             onIconoIzquierdo = {},
             onBotonClick = {},

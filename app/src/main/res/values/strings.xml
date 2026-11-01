@@ -11,6 +11,7 @@
     <string name="precio">PRECIO:</string>
     <string name="tiendaLocalizacion">TIENDA SELECCIONADA</string>
     <string name="cambiarLocalizacion">CAMBIAR</string>
-    <string name="tituloTienda">TIENDA SELECCIONADA</string>
-    <string name="tituloDomicilio">DOMICILIO ENTREGA</string>
+    <string name="simboloMoneda">€</string>
+    <string name="envioLocalizacion">DOMICILIO DE ENTREGA</string>
+    <string name="hazseleccion">HAZ TU SELECCION</string>
 </resources>

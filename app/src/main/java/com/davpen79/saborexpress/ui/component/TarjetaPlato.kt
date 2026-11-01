@@ -39,6 +39,7 @@ data class TarjetaPlatoData(
     val nombrePlato: String,
     val descripcion: String,
     val precio: String,
+    val moneda: Int,
     val onAnhadir: () -> Unit,
     val onVistazo: () -> Unit
 
@@ -74,9 +75,15 @@ fun TarjetaPlato(
                 modifier = Modifier.weight(1f)
             )
 
-            Text(text = data.precio,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold)
+            RowPrecio(
+                data = RowPrecioData(
+                    precioArticulo = data.precio,
+                    simboloMoneda = data.moneda
+                ),
+                precioFontSize = 18.sp,
+                monedaFontSize = 20.sp,
+                monedaFontWeight = FontWeight.ExtraBold
+            )
 
             Button(
                 onClick = data.onAnhadir,
@@ -115,7 +122,8 @@ fun TarjetaPlatoPreview(){
                 imagenPlato = R.drawable.plato002,
                 nombrePlato = "Hamburguesa con Queso y Lechuga",
                 descripcion = "Descripcion de una suculenta hamburguesa de ternera con queso y lechuga",
-                precio = "8€",
+                precio = "8",
+                moneda = R.string.simboloMoneda,
                 onAnhadir = {},
                 onVistazo = {}
             )

@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -12,10 +13,8 @@ import androidx.compose.ui.unit.dp
 import com.davpen79.saborexpress.R
 
 data class ColumnaDireccionesData(
-    val tituloTienda: String,
-    val localizacionTienda: String,
-    val tituloDomicilio: String,
-    val localizacionDomicilio: String
+    val direccionTienda: String,
+    val direccionEnvio: String,
 )
 
 @Composable
@@ -23,38 +22,33 @@ fun ColumnaDirecciones(
     data: ColumnaDireccionesData,
     modifier: Modifier = Modifier
 ) {
+    Column( modifier = Modifier.fillMaxWidth().padding(8.dp),verticalArrangement = Arrangement.spacedBy(8.dp)) {
 
-    Column(
-        modifier = Modifier
-            .padding(6.dp)
-            .fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(6.dp)
-    ) {
         RowLocalizacion(
             data = RowLocalizacionData(
-                localizacionTitulo = data.tituloTienda,
-                localizacionDescripcion = data.localizacionTienda
+                localizacion = stringResource(R.string.tiendaLocalizacion),
+                localizacionDescripcion = data.direccionTienda
             )
         )
+
         RowLocalizacion(
             data = RowLocalizacionData(
-                localizacionTitulo = data.tituloDomicilio,
-                localizacionDescripcion = data.localizacionDomicilio
+                localizacion = stringResource(R.string.envioLocalizacion),
+                localizacionDescripcion = data.direccionEnvio
             )
         )
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
 fun ColumnaDireccionesPreview() {
-    ColumnaDirecciones(
-        data = ColumnaDireccionesData(
-            tituloTienda = stringResource(R.string.tituloTienda),
-            localizacionTienda = "Calle Mayor, 14",
-            tituloDomicilio = stringResource(R.string.tituloDomicilio),
-            localizacionDomicilio = "Gran Via, 12"
+    MaterialTheme() {
+        ColumnaDirecciones(
+            data = ColumnaDireccionesData(
+                direccionTienda = "Calle Mayor , 14",
+                direccionEnvio = "Gran Via, 1"
+            )
         )
-    )
+    }
 }
