@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.davpen79.saborexpress.R
+import com.davpen79.saborexpress.ui.theme.NaranjaSabroso
 
 data class BotonPrincipalData(
 
@@ -48,7 +49,7 @@ fun BotonPrincipal(
             vertical = 8.dp
         ),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFFF9800),
+            containerColor = NaranjaSabroso,
             contentColor = Color.White
         )
     ) {

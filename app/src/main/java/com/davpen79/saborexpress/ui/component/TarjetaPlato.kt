@@ -12,17 +12,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -32,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davpen79.saborexpress.R
+import com.davpen79.saborexpress.ui.theme.NaranjaSabroso
 
 data class TarjetaPlatoData(
 
@@ -51,6 +53,7 @@ fun TarjetaPlato(
     modifier: Modifier = Modifier
 ){
     Card(shape = RoundedCornerShape(10.dp) ,
+        colors = CardDefaults.cardColors(containerColor = Color.White),
         modifier = Modifier.fillMaxWidth()
         .border(width = 1.dp, Color.Black, shape = RoundedCornerShape(10.dp)) ) {
         Row(verticalAlignment =  Alignment.CenterVertically,
@@ -64,7 +67,8 @@ fun TarjetaPlato(
                 painter = painterResource(data.imagenPlato),
                 contentDescription = stringResource(R.string.imagen_de_plato),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.height(80.dp)
+                modifier = Modifier.height(80.dp).clip(RoundedCornerShape(10.dp))
+
             )
 
             ColumnaDescripcion(
@@ -93,7 +97,7 @@ fun TarjetaPlato(
                 shape = RoundedCornerShape(5.dp),
                 contentPadding = PaddingValues(4.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF9800),
+                    containerColor = NaranjaSabroso,
                     contentColor = Color.White
                 )
             ) {
@@ -101,7 +105,7 @@ fun TarjetaPlato(
                     Icon(
                         painter = painterResource(R.drawable.carrito),
                         contentDescription = stringResource(R.string.carrito),
-                        modifier.size(20.dp)
+                        Modifier.size(20.dp)
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(text = stringResource(R.string.anhadir),
@@ -119,7 +123,7 @@ fun TarjetaPlatoPreview(){
     MaterialTheme(){
         TarjetaPlato(
             data = TarjetaPlatoData(
-                imagenPlato = R.drawable.plato002,
+                imagenPlato = R.drawable.burguer_tarjeta,
                 nombrePlato = "Hamburguesa con Queso y Lechuga",
                 descripcion = "Descripcion de una suculenta hamburguesa de ternera con queso y lechuga",
                 precio = "8",
