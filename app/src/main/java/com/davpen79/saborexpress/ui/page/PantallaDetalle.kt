@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -63,7 +64,7 @@ fun PantallaDetalle(
             .padding(16.dp)
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp),
 
         ) {
 
@@ -76,15 +77,14 @@ fun PantallaDetalle(
             modifier = Modifier.fillMaxWidth()
         )
         //CREO QUE PODRIA SER UNA COLUMN CON SCROLL: SON POCOS COMPONENTES Y SU NUMERO NO VA A CRECER
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(10.dp).fillMaxHeight()
                 .weight(1f),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            //verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            item {
                 ColumnaDescripcion(
                     data = ColumnaDescripcionData(
                         titulo = data.titulo,
@@ -94,10 +94,9 @@ fun PantallaDetalle(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(6.dp)
+                        .weight(0.35f)
                 )
-            }
 
-            item {
                 ColumnaDescripcion(
                     data = ColumnaDescripcionData(
                         titulo = data.tituloIngredientes,
@@ -107,18 +106,20 @@ fun PantallaDetalle(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(6.dp)
+                        .weight(0.35f)
                 )
-            }
 
-            item {
                 Row(
                     modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(0.1f),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = stringResource(R.string.calorias),
-                        fontSize = 18.sp,
+                        fontSize = 16.sp,
                         textAlign = TextAlign.Left,
-                        modifier = Modifier.padding(16.dp)
+                        modifier = Modifier.padding(10.dp)
                     )
 
                     Text(
@@ -129,9 +130,7 @@ fun PantallaDetalle(
                             .align(Alignment.CenterVertically)
                     )
                 }
-            }
 
-            item {
                 ColumnaDescripcion(
                     data = ColumnaDescripcionData(
                         titulo = stringResource(R.string.tituloalergenos),
@@ -140,8 +139,9 @@ fun PantallaDetalle(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(6.dp)
+                        .weight(0.2f)
                 )
-            }
+
         }
 
         //Spacer(modifier = Modifier.weight(1f))
@@ -197,8 +197,7 @@ fun PantallaDetallePreview() {
             tituloIngredientes = "INGREDIENTES",
             ingredientes = listOf("Pan de hamburguesa", "Ternera", "Lechuga", "Queso cheddar"),
             calorias = "453 Kcal",
-            //tituloAlergenos = "INFORMACION DE ALERGENOS",
-            alergenos = "Gluten(Trigo), Lacteos(Leche). Puede contener trazas de soja",
+            alergenos = "Gluten(Trigo), Lacteos(Leche). Puede contener trazas de soja.",
             precio = "8",
             moneda = R.string.simboloMoneda,
             onIconoDerecho = {},
