@@ -18,14 +18,16 @@ import com.davpen79.saborexpress.ui.page.PantallaDetalle
 import com.davpen79.saborexpress.ui.page.PantallaDetalleData
 import com.davpen79.saborexpress.ui.page.PantallaSeleccionPlato
 import com.davpen79.saborexpress.ui.page.PantallaSeleccionPlatoData
-import com.davpen79.saborexpress.ui.theme.SaborExpressTheme
+import com.example.compose.AppTheme
+
+//import com.davpen79.saborexpress.ui.theme.SaborExpressTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SaborExpressTheme {
+            AppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     //PantallaSeleccionPlato(
                     //    data = PantallaSeleccionPlatoData(
@@ -74,7 +76,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    SaborExpressTheme {
+    AppTheme {
         Greeting("Android")
     }
 }

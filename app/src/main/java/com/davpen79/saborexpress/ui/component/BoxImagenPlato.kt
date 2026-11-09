@@ -22,8 +22,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.davpen79.saborexpress.R
-import com.davpen79.saborexpress.ui.theme.HeartyPink
-import com.davpen79.saborexpress.ui.theme.NaranjaSabroso
+//import com.davpen79.saborexpress.ui.theme.HeartyPink
+//import com.davpen79.saborexpress.ui.theme.NaranjaSabroso
+import com.example.compose.primaryContainerLight
+import com.example.compose.tertiaryContainerLight
 
 data class BoxImagenPlatoData(
     @DrawableRes val imagenPlato: Int,
@@ -53,7 +55,7 @@ fun BoxImagenPlato(
                 .padding(8.dp)) {
             Icon(painter = painterResource(R.drawable.backbutton),
                 contentDescription = stringResource(R.string.backButton),
-                tint = NaranjaSabroso,
+                tint = primaryContainerLight,//Color(0xFFFF9800)
                 modifier = Modifier
                     .size(30.dp)
                     .background(
@@ -70,7 +72,7 @@ fun BoxImagenPlato(
                 .padding(8.dp)) {
             Icon(painter = painterResource(R.drawable.favoritebutton),
                 contentDescription = stringResource(R.string.favoriteButton),
-                tint = HeartyPink,
+                tint = tertiaryContainerLight,//Color(0xFFFFC0CB)
                 modifier = Modifier
                     .size(30.dp)
                     .background(

@@ -33,7 +33,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davpen79.saborexpress.R
-import com.davpen79.saborexpress.ui.theme.NaranjaSabroso
+import com.example.compose.primaryContainerLight
+
+//import com.davpen79.saborexpress.ui.theme.NaranjaSabroso
 
 data class TarjetaPlatoData(
 
@@ -97,7 +99,7 @@ fun TarjetaPlato(
                 shape = RoundedCornerShape(5.dp),
                 contentPadding = PaddingValues(4.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = NaranjaSabroso,
+                    containerColor = primaryContainerLight,
                     contentColor = Color.White
                 )
             ) {
