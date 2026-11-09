@@ -40,6 +40,8 @@ data class PantallaDetalleData(
     val descripcion: String,
     val tituloIngredientes: String,
     val ingredientes: List<String>,
+    val tituloCalorias: String,
+    val caloriasValue: String,
     val calorias: String,
     //val tituloAlergenos: String,
     val alergenos: String,
@@ -76,80 +78,91 @@ fun PantallaDetalle(
             ),
             modifier = Modifier.fillMaxWidth()
         )
-        //CREO QUE PODRIA SER UNA COLUMN CON SCROLL: SON POCOS COMPONENTES Y SU NUMERO NO VA A CRECER
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp).fillMaxHeight()
+                .padding(10.dp)
+                .fillMaxHeight()
                 .weight(1f),
             //verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-                ColumnaDescripcion(
-                    data = ColumnaDescripcionData(
-                        titulo = data.titulo,
-                        descripcion = data.descripcion,
-                        fontSizeTitulo = 24.sp
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                        .weight(0.35f)
+            ColumnaDescripcion(
+                data = ColumnaDescripcionData(
+                    titulo = data.titulo,
+                    descripcion = data.descripcion,
+                    fontSizeTitulo = 24.sp
+                ),
+                componenteScrolleable = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(6.dp)
+                    .weight(0.35f)
+            )
+
+            ColumnaDescripcion(
+                data = ColumnaDescripcionData(
+                    titulo = data.tituloIngredientes,
+                    descripcion = data.ingredientes
+                        .joinToString("\n") { "- $it" }
+                ),
+                componenteScrolleable = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(6.dp)
+                    .weight(0.35f)
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(0.1f),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(R.string.titulocalorias),
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Left,
+                    modifier = Modifier.padding(10.dp)
                 )
 
-                ColumnaDescripcion(
-                    data = ColumnaDescripcionData(
-                        titulo = data.tituloIngredientes,
-                        descripcion = data.ingredientes
-                            .joinToString("\n") { "- $it" }
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                        .weight(0.35f)
+                Text(
+                    data.caloriasValue,
+                    textAlign = TextAlign.Right
                 )
 
-                Row(
+                Text(
+                    text = stringResource(R.string.calorias),
+                    textAlign = TextAlign.Right,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(0.1f),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(R.string.calorias),
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Left,
-                        modifier = Modifier.padding(10.dp)
-                    )
-
-                    Text(
-                        data.calorias,
-                        textAlign = TextAlign.Right,
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .align(Alignment.CenterVertically)
-                    )
-                }
-
-                ColumnaDescripcion(
-                    data = ColumnaDescripcionData(
-                        titulo = stringResource(R.string.tituloalergenos),
-                        descripcion = data.alergenos
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                        .weight(0.2f)
+                        .padding(2.dp,10.dp)
+                    //.align(Alignment.CenterVertically)
                 )
+            }
+
+            ColumnaDescripcion(
+                data = ColumnaDescripcionData(
+                    titulo = stringResource(R.string.tituloalergenos),
+                    descripcion = data.alergenos
+                ),
+                componenteScrolleable = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(6.dp)
+                    .weight(0.2f)
+            )
 
         }
 
         //Spacer(modifier = Modifier.weight(1f))
 
         Column(modifier = Modifier) {
-            Row(modifier = Modifier
-                .align(Alignment.End)
-                .padding(6.dp)) {
+            Row(
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(6.dp)
+            ) {
                 Text(
                     text = stringResource(R.string.precio),
                     fontSize = 16.sp,
@@ -182,7 +195,6 @@ fun PantallaDetalle(
 
         }
 
-
     }
 }
 
@@ -196,7 +208,9 @@ fun PantallaDetallePreview() {
             descripcion = "Sabrosa hamburguesa de ternera con queso cheddar y lechuga fresca",
             tituloIngredientes = "INGREDIENTES",
             ingredientes = listOf("Pan de hamburguesa", "Ternera", "Lechuga", "Queso cheddar"),
-            calorias = "453 Kcal",
+            tituloCalorias = stringResource(R.string.titulocalorias),
+            caloriasValue = "435",
+            calorias = stringResource(R.string.calorias),
             alergenos = "Gluten(Trigo), Lacteos(Leche). Puede contener trazas de soja.",
             precio = "8",
             moneda = R.string.simboloMoneda,

@@ -32,8 +32,11 @@ data class ColumnaDescripcionData(
 @Composable
 fun ColumnaDescripcion(
     data: ColumnaDescripcionData,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    componenteScrolleable: Boolean = false
 ) {
+    val scrollState = rememberScrollState()
+
     Column(modifier = modifier, verticalArrangement =  Arrangement.Center) {
         Text(text = data.titulo,
             fontSize = data.fontSizeTitulo,
@@ -56,7 +59,13 @@ fun ColumnaDescripcion(
                 maxFontSize = data.fontSizeDescripcion,
                 stepSize = 1.sp
             ),
-            modifier = Modifier.verticalScroll(rememberScrollState())
+            modifier = if (componenteScrolleable){
+                Modifier.weight(1f)
+                    .verticalScroll(rememberScrollState())
+            } else {
+                Modifier
+            }
+            //modifier = Modifier.verticalScroll(rememberScrollState())
             //maxLines = 2,
             //overflow = TextOverflow.Ellipsis)
         )

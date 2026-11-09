@@ -6,7 +6,8 @@
     <string name="backButton">Back Button</string>
     <string name="favoriteButton">Boton Favoritos</string>
     <string name="icono">Icono</string>
-    <string name="calorias">Calorías por porción:</string>
+    <string name="titulocalorias">Calorías por porción:</string>
+    <string name="calorias">Kcal</string>
     <string name="tituloalergenos">INFORMACION DE ALERGENOS</string>
     <string name="precio">PRECIO:</string>
     <string name="tiendaLocalizacion">TIENDA SELECCIONADA</string>
