@@ -31,6 +31,7 @@ import com.davpen79.saborexpress.ui.component.ColumnaDescripcion
 import com.davpen79.saborexpress.ui.component.ColumnaDescripcionData
 import com.davpen79.saborexpress.ui.component.RowPrecio
 import com.davpen79.saborexpress.ui.component.RowPrecioData
+import com.example.compose.onPrimaryLight
 
 data class PantallaDetalleData(
     val imagenPlato: Int,
@@ -64,7 +65,7 @@ fun PantallaDetalle(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
-            .background(Color.White),
+            .background(onPrimaryLight),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp),
 

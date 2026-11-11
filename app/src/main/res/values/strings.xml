@@ -15,4 +15,6 @@
     <string name="simboloMoneda">€</string>
     <string name="envioLocalizacion">DOMICILIO DE ENTREGA</string>
     <string name="hazseleccion">HAZ TU SELECCION</string>
+    <string name="tituloemail">EMAIL</string>
+    <string name="titulopassword">PASSWORD</string>
 </resources>
