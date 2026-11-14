@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davpen79.saborexpress.R
+import com.example.compose.SaborExpressTheme
 
 data class RowLocalizacionData(
     val localizacion: String,
@@ -34,7 +36,7 @@ fun RowLocalizacion(
         .fillMaxWidth()
         .border(width = 1.dp, Color.Black, shape = RoundedCornerShape(10.dp))
         .clip(RoundedCornerShape(10.dp))
-        .background(Color.White)
+        .background(MaterialTheme.colorScheme.onPrimary)
         .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -63,10 +65,12 @@ fun RowLocalizacion(
 @Preview(showBackground = true)
 @Composable
 fun RowLocalizacionPreview(){
-    RowLocalizacion(
-        data = RowLocalizacionData(
-            localizacion = stringResource(R.string.tiendaLocalizacion),
-            localizacionDescripcion = "Calle Mayor, 12"
+    SaborExpressTheme() {
+        RowLocalizacion(
+            data = RowLocalizacionData(
+                localizacion = stringResource(R.string.tiendaLocalizacion),
+                localizacionDescripcion = "Calle Mayor, 12"
+            )
         )
-    )
+    }
 }

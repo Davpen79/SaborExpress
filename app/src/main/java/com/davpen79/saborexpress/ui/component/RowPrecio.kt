@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davpen79.saborexpress.R
+import com.example.compose.SaborExpressTheme
 
 
 data class RowPrecioData (
@@ -52,10 +53,12 @@ fun RowPrecio(
 @Preview(showBackground = true)
 @Composable
 fun RowPrecioPreview(){
-    RowPrecio(
-        data = RowPrecioData(
-            precioArticulo = "10",
-            simboloMoneda = R.string.simboloMoneda
+    SaborExpressTheme() {
+        RowPrecio(
+            data = RowPrecioData(
+                precioArticulo = "10",
+                simboloMoneda = R.string.simboloMoneda
+            )
         )
-    )
+    }
 }

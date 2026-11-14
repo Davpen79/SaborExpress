@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.davpen79.saborexpress.R
+import com.example.compose.SaborExpressTheme
 //import com.davpen79.saborexpress.ui.theme.HeartyPink
 //import com.davpen79.saborexpress.ui.theme.NaranjaSabroso
 import com.example.compose.primaryContainerLight
@@ -55,11 +56,11 @@ fun BoxImagenPlato(
                 .padding(8.dp)) {
             Icon(painter = painterResource(R.drawable.backbutton),
                 contentDescription = stringResource(R.string.backButton),
-                tint = primaryContainerLight,//Color(0xFFFF9800)
+                tint = MaterialTheme.colorScheme.primaryContainer,//Color(0xFFFF9800)
                 modifier = Modifier
                     .size(30.dp)
                     .background(
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         shape = CircleShape
                     )
                     .padding(2.dp)
@@ -72,11 +73,11 @@ fun BoxImagenPlato(
                 .padding(8.dp)) {
             Icon(painter = painterResource(R.drawable.favoritebutton),
                 contentDescription = stringResource(R.string.favoriteButton),
-                tint = tertiaryContainerLight,//Color(0xFFFFC0CB)
+                tint = MaterialTheme.colorScheme.tertiaryContainer,//Color(0xFFFFC0CB)
                 modifier = Modifier
                     .size(30.dp)
                     .background(
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         shape = CircleShape
                     )
                     .padding(1.dp)
@@ -89,7 +90,7 @@ fun BoxImagenPlato(
 @Preview
 @Composable
 fun BoxImagenPlatoPreview(){
-    MaterialTheme() {
+    SaborExpressTheme() {
         BoxImagenPlato(
             data = BoxImagenPlatoData(
                 imagenPlato = R.drawable.burguer3,

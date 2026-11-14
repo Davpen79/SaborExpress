@@ -33,9 +33,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davpen79.saborexpress.R
+import com.example.compose.SaborExpressTheme
 import com.example.compose.primaryContainerLight
 
-//import com.davpen79.saborexpress.ui.theme.NaranjaSabroso
 
 data class TarjetaPlatoData(
 
@@ -55,7 +55,7 @@ fun TarjetaPlato(
     modifier: Modifier = Modifier
 ){
     Card(shape = RoundedCornerShape(10.dp) ,
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
         modifier = Modifier.fillMaxWidth()
         .border(width = 1.dp, Color.Black, shape = RoundedCornerShape(10.dp)) ) {
         Row(verticalAlignment =  Alignment.CenterVertically,
@@ -99,8 +99,8 @@ fun TarjetaPlato(
                 shape = RoundedCornerShape(5.dp),
                 contentPadding = PaddingValues(4.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = primaryContainerLight,
-                    contentColor = Color.White
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
                 )
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -122,7 +122,7 @@ fun TarjetaPlato(
 @Preview
 @Composable
 fun TarjetaPlatoPreview(){
-    MaterialTheme(){
+    SaborExpressTheme(){
         TarjetaPlato(
             data = TarjetaPlatoData(
                 imagenPlato = R.drawable.burguer_tarjeta,

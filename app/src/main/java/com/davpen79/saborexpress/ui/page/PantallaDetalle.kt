@@ -31,6 +31,7 @@ import com.davpen79.saborexpress.ui.component.ColumnaDescripcion
 import com.davpen79.saborexpress.ui.component.ColumnaDescripcionData
 import com.davpen79.saborexpress.ui.component.RowPrecio
 import com.davpen79.saborexpress.ui.component.RowPrecioData
+import com.example.compose.SaborExpressTheme
 import com.example.compose.onPrimaryLight
 
 data class PantallaDetalleData(
@@ -202,24 +203,26 @@ fun PantallaDetalle(
 @Preview(showBackground = true)
 @Composable
 fun PantallaDetallePreview() {
-    PantallaDetalle(
-        data = PantallaDetalleData(
-            imagenPlato = R.drawable.burguer3,
-            titulo = "HAMBURGUESA CON QUESO",
-            descripcion = "Sabrosa hamburguesa de ternera con queso cheddar y lechuga fresca",
-            tituloIngredientes = "INGREDIENTES",
-            ingredientes = listOf("Pan de hamburguesa", "Ternera", "Lechuga", "Queso cheddar"),
-            tituloCalorias = stringResource(R.string.titulocalorias),
-            caloriasValue = "435",
-            calorias = stringResource(R.string.calorias),
-            alergenos = "Gluten(Trigo), Lacteos(Leche). Puede contener trazas de soja.",
-            precio = "8",
-            moneda = R.string.simboloMoneda,
-            onIconoDerecho = {},
-            onIconoIzquierdo = {},
-            onBotonClick = {},
-            iconoBoton = R.drawable.carrito,
-            textoBoton = "Añadir al carrito"
+    SaborExpressTheme() {
+        PantallaDetalle(
+            data = PantallaDetalleData(
+                imagenPlato = R.drawable.burguer3,
+                titulo = "HAMBURGUESA CON QUESO",
+                descripcion = "Sabrosa hamburguesa de ternera con queso cheddar y lechuga fresca",
+                tituloIngredientes = "INGREDIENTES",
+                ingredientes = listOf("Pan de hamburguesa", "Ternera", "Lechuga", "Queso cheddar"),
+                tituloCalorias = stringResource(R.string.titulocalorias),
+                caloriasValue = "435",
+                calorias = stringResource(R.string.calorias),
+                alergenos = "Gluten(Trigo), Lacteos(Leche). Puede contener trazas de soja.",
+                precio = "8",
+                moneda = R.string.simboloMoneda,
+                onIconoDerecho = {},
+                onIconoIzquierdo = {},
+                onBotonClick = {},
+                iconoBoton = R.drawable.carrito,
+                textoBoton = "Añadir al carrito"
+            )
         )
-    )
+    }
 }

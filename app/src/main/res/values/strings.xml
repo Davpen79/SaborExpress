@@ -17,4 +17,6 @@
     <string name="hazseleccion">HAZ TU SELECCION</string>
     <string name="tituloemail">EMAIL</string>
     <string name="titulopassword">PASSWORD</string>
+    <string name="placeholdercorreo">correo electrónico</string>
+    <string name="placeholderpassword">contraseña</string>
 </resources>

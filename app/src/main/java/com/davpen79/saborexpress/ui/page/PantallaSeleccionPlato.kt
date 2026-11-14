@@ -27,6 +27,7 @@ import com.davpen79.saborexpress.ui.component.ColumnaDirecciones
 import com.davpen79.saborexpress.ui.component.ColumnaDireccionesData
 import com.davpen79.saborexpress.ui.component.TarjetaPlato
 import com.davpen79.saborexpress.ui.component.TarjetaPlatoData
+import com.example.compose.SaborExpressTheme
 
 data class PantallaSeleccionPlatoData(
     val localizacionTienda: String,
@@ -88,7 +89,7 @@ fun PantallaSeleccionPlato(
 @Preview(showBackground = true)
 @Composable
 fun PantallaSeleccionPlatoPreview() {
-    MaterialTheme() {
+    SaborExpressTheme() {
         PantallaSeleccionPlato(
             data = PantallaSeleccionPlatoData(
                 localizacionEnvio = "Gran Via, 4",
