@@ -19,4 +19,6 @@
     <string name="titulopassword">PASSWORD</string>
     <string name="placeholdercorreo">correo electrónico</string>
     <string name="placeholderpassword">contraseña</string>
+    <string name="iniciarsesion">INICIAR SESION</string>
+    <string name="recuperarpass">RECUPERAR PASSWORD</string>
 </resources>

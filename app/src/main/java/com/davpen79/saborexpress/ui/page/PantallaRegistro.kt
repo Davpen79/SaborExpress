@@ -15,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults.colors
 import androidx.compose.runtime.Composable
@@ -31,10 +32,15 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.davpen79.saborexpress.R
+import com.davpen79.saborexpress.ui.component.BotonPrincipal
+import com.davpen79.saborexpress.ui.component.BotonPrincipalData
 import com.example.compose.SaborExpressTheme
 
 data class PantallaRegistroData(
-    val textoCondiciones: String
+    val textoCondiciones: String,
+    val onBotonPrincipalClick: () -> Unit,
+    val onTextoClick: () -> Unit,
+    val onBotonSecundario: () -> Unit
 ) {
 
 }
@@ -143,6 +149,22 @@ fun PantallaRegistro(
             )
         }
 
+        BotonPrincipal(
+            data = BotonPrincipalData(
+                icono = null,
+                texto = stringResource(R.string.iniciarsesion),
+                onBotonClick = data.onBotonPrincipalClick,
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(40.dp,20.dp)
+        )
+
+        TextButton(
+            onClick = data.onTextoClick
+        ) {
+            Text(text = stringResource(R.string.recuperarpass))
+        }
 
     }
 
@@ -154,7 +176,10 @@ fun PantallaRegistroPreview() {
     SaborExpressTheme() {
         PantallaRegistro(
             data = PantallaRegistroData(
-                textoCondiciones = "Aceptar TOCS"
+                textoCondiciones = "Aceptar TOCS",
+                onBotonPrincipalClick = {},
+                onTextoClick = {},
+                onBotonSecundario = {}
             )
         )
     }
