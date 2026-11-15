@@ -67,7 +67,7 @@ fun BotonPrincipal(
                 Spacer(modifier = Modifier.width(ButtonDefaults.IconSpacing))
             }
 
-            Text(text = data.texto)
+            Text(text = data.texto, modifier = Modifier)
         }
     }
 

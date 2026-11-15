@@ -21,4 +21,7 @@
     <string name="placeholderpassword">contraseña</string>
     <string name="iniciarsesion">INICIAR SESION</string>
     <string name="recuperarpass">RECUPERAR PASSWORD</string>
+    <string name="crearcuenta">CREAR CUENTA</string>
+    <string name="terms">Acepto los Terminos y Condiciones de Sabor Express</string>
+    <string name="escogeridioma">Escoje el idioma principal de la aplicación</string>
 </resources>
