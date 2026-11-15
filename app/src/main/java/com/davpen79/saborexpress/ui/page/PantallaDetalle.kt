@@ -45,7 +45,6 @@ data class PantallaDetalleData(
     val tituloCalorias: String,
     val caloriasValue: String,
     val calorias: String,
-    //val tituloAlergenos: String,
     val alergenos: String,
     val precio: String,
     val moneda: Int,

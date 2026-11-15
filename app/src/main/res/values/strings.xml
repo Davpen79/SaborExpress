@@ -23,5 +23,8 @@
     <string name="recuperarpass">RECUPERAR PASSWORD</string>
     <string name="crearcuenta">CREAR CUENTA</string>
     <string name="terms">Acepto los Terminos y Condiciones de Sabor Express</string>
-    <string name="escogeridioma">Escoje el idioma principal de la aplicación</string>
+    <string name="escojerpublicidad">Como deseas recibir nuestra publicidad y promociones:</string>
+    <string name="promocioncorreo">Por correo electrónico</string>
+    <string name="promocionwhatsapp">Por Whatsapp</string>
+    <string name="promocionnada">No deseo recibir publicidad</string>
 </resources>

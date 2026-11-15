@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -46,7 +47,7 @@ import com.davpen79.saborexpress.ui.component.BotonPrincipalData
 import com.example.compose.SaborExpressTheme
 
 data class PantallaRegistroData(
-    val textoCondiciones: String,
+
     val onBotonPrincipalClick: () -> Unit,
     val onTextoClick: () -> Unit,
     val onBotonSecundario: () -> Unit
@@ -198,14 +199,14 @@ fun PantallaRegistro(
             )
         }
 
-        var idioma by remember { mutableStateOf("") }
+        var promociones by remember { mutableStateOf("") }
 
         Column(
-            modifier = Modifier.padding(8.dp,14.dp)
+            modifier = Modifier.padding(8.dp,14.dp).selectableGroup()
         ) {
 
             Text(
-                text = stringResource(R.string.escogeridioma),
+                text = stringResource(R.string.escojerpublicidad),
                 modifier = Modifier.padding(8.dp)
             )
 
@@ -213,30 +214,30 @@ fun PantallaRegistro(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
-                    selected = idioma == "Español",
-                    onClick = { idioma = "Español" }
+                    selected = promociones == "Email",
+                    onClick = { promociones = "Email" }
                 )
-                Text("Español")
+                Text(text = stringResource(R.string.promocioncorreo))
             }
 
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
-                    selected = idioma == "Inglés",
-                    onClick = { idioma = "Inglés" }
+                    selected = promociones == "Whatsapp",
+                    onClick = { promociones = "Whatsapp" }
                 )
-                Text("Inglés")
+                Text(text = stringResource(R.string.promocionwhatsapp))
             }
 
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
-                    selected = idioma == "Galego",
-                    onClick = { idioma = "Galego" }
+                    selected = promociones == "Nada",
+                    onClick = { promociones = "Nada" }
                 )
-                Text("Galego")
+                Text(text = stringResource(R.string.promocionnada))
             }
         }
 
@@ -251,7 +252,7 @@ fun PantallaRegistroPreview() {
     SaborExpressTheme() {
         PantallaRegistro(
             data = PantallaRegistroData(
-                textoCondiciones = "Aceptar TOCS",
+
                 onBotonPrincipalClick = {},
                 onTextoClick = {},
                 onBotonSecundario = {}
