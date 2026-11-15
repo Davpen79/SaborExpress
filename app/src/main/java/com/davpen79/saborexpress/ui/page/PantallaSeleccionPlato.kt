@@ -13,6 +13,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -21,26 +23,43 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.davpen79.saborexpress.R
 import com.davpen79.saborexpress.seeder.PlatosSeeder
 import com.davpen79.saborexpress.ui.component.ColumnaDirecciones
 import com.davpen79.saborexpress.ui.component.ColumnaDireccionesData
 import com.davpen79.saborexpress.ui.component.TarjetaPlato
 import com.davpen79.saborexpress.ui.component.TarjetaPlatoData
+import com.davpen79.saborexpress.viewmodel.PantallaSeleccionPlatoUiState
+import com.davpen79.saborexpress.viewmodel.PantallaSeleccionPlatoVM
 import com.example.compose.SaborExpressTheme
 
-data class PantallaSeleccionPlatoData(
-    val localizacionTienda: String,
-    val localizacionEnvio: String,
-    val platosList: List<TarjetaPlatoData>
-)
+//data class PantallaSeleccionPlatoData(
+//    val localizacionTienda: String,
+//    val localizacionEnvio: String,
+//    val platosList: List<TarjetaPlatoData>
+//)
 
 @Composable
 fun PantallaSeleccionPlato(
-    data: PantallaSeleccionPlatoData,
+    viewModel: PantallaSeleccionPlatoVM = viewModel(),
     modifier: Modifier = Modifier
 ) {
 
+    val uiState by viewModel.uiState.collectAsState()
+
+    PantallaSeleccionPlatoContent(
+        uiState = uiState,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun PantallaSeleccionPlatoContent(
+    uiState: PantallaSeleccionPlatoUiState,
+    modifier: Modifier = Modifier
+){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,8 +72,8 @@ fun PantallaSeleccionPlato(
 
         ColumnaDirecciones(
             data = ColumnaDireccionesData(
-                direccionTienda = data.localizacionTienda,
-                direccionEnvio = data.localizacionEnvio
+                direccionTienda = uiState.localizacionTienda,
+                direccionEnvio = uiState.localizacionEnvio
             ),
             modifier = Modifier.padding(8.dp)
         )
@@ -76,7 +95,7 @@ fun PantallaSeleccionPlato(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(4.dp)
         ) {
-            items(data.platosList) { plato ->
+            items(uiState.platosList) { plato ->
                 TarjetaPlato(
                     data = plato,
                     //modifier = Modifier.padding(horizontal = 8.dp)
@@ -90,9 +109,9 @@ fun PantallaSeleccionPlato(
 @Composable
 fun PantallaSeleccionPlatoPreview() {
     SaborExpressTheme() {
-        PantallaSeleccionPlato(
-            data = PantallaSeleccionPlatoData(
-                localizacionEnvio = "Gran Via, 4",
+        PantallaSeleccionPlatoContent(
+            uiState = PantallaSeleccionPlatoUiState(
+                localizacionEnvio = "Gran Via, 6",
                 localizacionTienda = "Calle Mayor, 12",
                 platosList = PlatosSeeder.obtenerListaPlatos()
             )

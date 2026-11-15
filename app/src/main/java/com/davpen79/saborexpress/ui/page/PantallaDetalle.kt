@@ -38,6 +38,7 @@ import com.davpen79.saborexpress.viewmodel.PantallaDetalleVM
 import com.example.compose.SaborExpressTheme
 import com.example.compose.onPrimaryLight
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.davpen79.saborexpress.seeder.ComidasSeeder
 
 //data class PantallaDetalleData(
 //    val imagenPlato: Int,
@@ -84,142 +85,148 @@ fun PantallaDetalleContent(
     onIconoDerecho: () -> Unit,
     onBotonClick: () -> Unit,
     modifier: Modifier = Modifier
-){
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp)
-            .background(onPrimaryLight),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(6.dp),
+) {
 
-        ) {
+    val comida = uiState.comida
 
-        BoxImagenPlato(
-            data = BoxImagenPlatoData(
-                imagenPlato = uiState.imagenPlato,
-                onIconoDerecho = onIconoDerecho,
-                onIconoIzquierdo = onIconoIzquierdo
-            ),
-            modifier = Modifier.fillMaxWidth()
-        )
+    if (comida != null) {
 
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-                .fillMaxHeight()
-                .weight(1f),
-            //verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
+            modifier = modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .background(onPrimaryLight),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(6.dp),
 
-            ColumnaDescripcion(
-                data = ColumnaDescripcionData(
-                    titulo = uiState.titulo,
-                    descripcion = uiState.descripcion,
-                    fontSizeTitulo = 24.sp
-                ),
-                componenteScrolleable = true,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(6.dp)
-                    .weight(0.35f)
-            )
-
-            ColumnaDescripcion(
-                data = ColumnaDescripcionData(
-                    titulo = stringResource(R.string.tituloingredientes),
-                    descripcion = uiState.ingredientes
-                        .joinToString("\n") { "- $it" }
-                ),
-                componenteScrolleable = true,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(6.dp)
-                    .weight(0.35f)
-            )
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(0.1f),
-                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = stringResource(R.string.titulocalorias),
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Left,
-                    modifier = Modifier.padding(10.dp)
-                )
 
-                Text(
-                    uiState.caloriasValue,
-                    textAlign = TextAlign.Right
-                )
-
-                Text(
-                    text = stringResource(R.string.calorias),
-                    textAlign = TextAlign.Right,
-                    modifier = Modifier
-                        .padding(2.dp,10.dp)
-                    //.align(Alignment.CenterVertically)
-                )
-            }
-
-            ColumnaDescripcion(
-                data = ColumnaDescripcionData(
-                    titulo = stringResource(R.string.tituloalergenos),
-                    descripcion = uiState.alergenos
+            BoxImagenPlato(
+                data = BoxImagenPlatoData(
+                    imagenPlato = uiState.comida.imagenPlato,
+                    onIconoDerecho = onIconoDerecho,
+                    onIconoIzquierdo = onIconoIzquierdo
                 ),
-                componenteScrolleable = true,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(6.dp)
-                    .weight(0.2f)
+                modifier = Modifier.fillMaxWidth()
             )
 
-        }
-
-        //Spacer(modifier = Modifier.weight(1f))
-
-        Column(modifier = Modifier) {
-            Row(
+            Column(
                 modifier = Modifier
-                    .align(Alignment.End)
-                    .padding(6.dp)
+                    .fillMaxWidth()
+                    .padding(10.dp)
+                    .fillMaxHeight()
+                    .weight(1f),
+                //verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Text(
-                    text = stringResource(R.string.precio),
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Right,
-                    modifier = Modifier.align(Alignment.CenterVertically)
-                )
 
-                RowPrecio(
-                    data = RowPrecioData(
-                        precioArticulo = uiState.precio,
-                        simboloMoneda = uiState.moneda
+                ColumnaDescripcion(
+                    data = ColumnaDescripcionData(
+                        titulo = uiState.comida.titulo,
+                        descripcion = uiState.comida.descripcion,
+                        fontSizeTitulo = 24.sp
                     ),
-                    modifier = Modifier.padding(8.dp),
-                    precioFontSize = 20.sp,
-                    monedaFontSize = 22.sp,
-                    monedaFontWeight = FontWeight.ExtraBold
+                    componenteScrolleable = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(6.dp)
+                        .weight(0.35f)
+                )
+
+                ColumnaDescripcion(
+                    data = ColumnaDescripcionData(
+                        titulo = stringResource(R.string.tituloingredientes),
+                        descripcion = uiState.comida.ingredientes
+                            .joinToString("\n") { "- $it" }
+                    ),
+                    componenteScrolleable = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(6.dp)
+                        .weight(0.35f)
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(0.1f),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(R.string.titulocalorias),
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Left,
+                        modifier = Modifier.padding(10.dp)
+                    )
+
+                    Text(
+                        uiState.comida.caloriasValue,
+                        textAlign = TextAlign.Right
+                    )
+
+                    Text(
+                        text = stringResource(R.string.calorias),
+                        textAlign = TextAlign.Right,
+                        modifier = Modifier
+                            .padding(2.dp, 10.dp)
+                        //.align(Alignment.CenterVertically)
+                    )
+                }
+
+                ColumnaDescripcion(
+                    data = ColumnaDescripcionData(
+                        titulo = stringResource(R.string.tituloalergenos),
+                        descripcion = uiState.comida.alergenos
+                    ),
+                    componenteScrolleable = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(6.dp)
+                        .weight(0.2f)
                 )
 
             }
-            BotonPrincipal(
-                data = BotonPrincipalData(
-                    icono = uiState.iconoBoton,
-                    texto = stringResource(R.string.anhadiralcarrito),
-                    onBotonClick = onBotonClick
-                ),
-                modifier = Modifier
-                    .padding(6.dp)
-                    .fillMaxWidth()
-            )
+
+            //Spacer(modifier = Modifier.weight(1f))
+
+            Column(modifier = Modifier) {
+                Row(
+                    modifier = Modifier
+                        .align(Alignment.End)
+                        .padding(6.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.precio),
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Right,
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    )
+
+                    RowPrecio(
+                        data = RowPrecioData(
+                            precioArticulo = uiState.comida.precio,
+                            simboloMoneda = R.string.simboloMoneda
+                        ),
+                        modifier = Modifier.padding(8.dp),
+                        precioFontSize = 20.sp,
+                        monedaFontSize = 22.sp,
+                        monedaFontWeight = FontWeight.ExtraBold
+                    )
+
+                }
+                BotonPrincipal(
+                    data = BotonPrincipalData(
+                        icono = R.drawable.carrito,
+                        texto = stringResource(R.string.anhadiralcarrito),
+                        onBotonClick = onBotonClick
+                    ),
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .fillMaxWidth()
+                )
+
+            }
 
         }
-
     }
 }
 
@@ -229,24 +236,7 @@ fun PantallaDetallePreview() {
     SaborExpressTheme() {
         PantallaDetalleContent(
             uiState = PantallaDetalleUIState(
-                imagenPlato = R.drawable.burguer3,
-                titulo = "HAMBURGUESA CON QUESO",
-                descripcion = "Sabrosa hamburguesa de ternera con queso cheddar y lechuga fresca",
-                tituloIngredientes = "Ingredientes",
-                ingredientes = listOf(
-                    "Pan de hamburguesa",
-                    "Ternera",
-                    "Lechuga",
-                    "Queso cheddar"
-                ),
-                tituloCalorias = "Calorías",
-                caloriasValue = "435",
-                calorias = "kcal",
-                alergenos = "Gluten (Trigo), Lácteos (Leche). Puede contener trazas de soja.",
-                precio = "8",
-                moneda = R.string.simboloMoneda,
-                iconoBoton = R.drawable.carrito,
-                textoBoton = "Añadir al carrito"
+                comida = ComidasSeeder.obtenerListaComidas()[0]
             ),
             onIconoIzquierdo = {},
             onIconoDerecho = {},

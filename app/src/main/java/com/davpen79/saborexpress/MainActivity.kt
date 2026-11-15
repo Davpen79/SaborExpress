@@ -17,7 +17,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.davpen79.saborexpress.seeder.PlatosSeeder
 import com.davpen79.saborexpress.ui.page.PantallaDetalle
 import com.davpen79.saborexpress.ui.page.PantallaSeleccionPlato
-import com.davpen79.saborexpress.ui.page.PantallaSeleccionPlatoData
 import com.davpen79.saborexpress.viewmodel.PantallaDetalleVM
 import com.example.compose.SaborExpressTheme
 
