@@ -13,11 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.davpen79.saborexpress.seeder.PlatosSeeder
 import com.davpen79.saborexpress.ui.page.PantallaDetalle
-import com.davpen79.saborexpress.ui.page.PantallaDetalleData
 import com.davpen79.saborexpress.ui.page.PantallaSeleccionPlato
 import com.davpen79.saborexpress.ui.page.PantallaSeleccionPlatoData
+import com.davpen79.saborexpress.viewmodel.PantallaDetalleVM
 import com.example.compose.SaborExpressTheme
 
 
@@ -37,25 +38,6 @@ class MainActivity : ComponentActivity() {
                     //    modifier = Modifier.padding(innerPadding)
                     //)
                     PantallaDetalle(
-                        data = PantallaDetalleData(
-                            imagenPlato = R.drawable.burguer3,
-                            titulo = "HAMBURGUESA CON QUESO",
-                            descripcion = "Sabrosa hamburguesa de ternera con queso cheddar y lechuga fresca",
-                            tituloIngredientes = "INGREDIENTES",
-                            ingredientes = listOf("Pan de hamburguesa", "Ternera", "Lechuga", "Queso cheddar",
-                                "Pepinillo", "Cebolla", "Tomate", "Ketchup", "Mostaza"),
-                            tituloCalorias = stringResource(R.string.titulocalorias),
-                            caloriasValue = "453",
-                            calorias = stringResource(R.string.calorias),
-                            alergenos = "Gluten(Trigo), Lacteos(Leche). Puede contener trazas de soja.",
-                            precio = "8",
-                            moneda = R.string.simboloMoneda,
-                            onIconoDerecho = {},
-                            onIconoIzquierdo = {},
-                            onBotonClick = {},
-                            iconoBoton = R.drawable.carrito,
-                            textoBoton = "Añadir al carrito"
-                        ),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
