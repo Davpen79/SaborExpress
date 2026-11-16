@@ -29,4 +29,8 @@
     <string name="promocionnada">No deseo recibir publicidad</string>
     <string name="tituloingredientes">INGREDIENTES</string>
     <string name="anhadiralcarrito">Añadir al carrito</string>
+    <string name="descripmenuicon">Icono menu desplegable</string>
+    <string name="logoempresa">Logo de SaborExpress</string>
+    <string name="usericon">Icono de usuario</string>
+    <string name="home">Icono de Home</string>
 </resources>
