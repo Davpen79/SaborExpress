@@ -24,13 +24,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.davpen79.saborexpress.seeder.PlatosSeeder
+//import com.davpen79.saborexpress.seeder.PlatosSeeder
 import com.davpen79.saborexpress.ui.component.NavigationBar
 import com.davpen79.saborexpress.ui.component.TopBar
 import com.davpen79.saborexpress.ui.page.PantallaDetalle
 import com.davpen79.saborexpress.ui.page.PantallaRegistro
 import com.davpen79.saborexpress.ui.page.PantallaSeleccionPlato
-import com.davpen79.saborexpress.viewmodel.PantallaDetalleVM
 import com.example.compose.SaborExpressTheme
 import kotlinx.coroutines.launch
 
@@ -100,7 +99,8 @@ class MainActivity : ComponentActivity() {
                         //    ),
                         //    modifier = Modifier.padding(innerPadding)
                         //)
-                        PantallaRegistro(
+                        PantallaDetalle(
+                            id = 11,
                             modifier = Modifier.padding(innerPadding)
                         )
                     }

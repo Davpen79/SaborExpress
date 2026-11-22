@@ -39,6 +39,7 @@ import com.example.compose.primaryContainerLight
 
 data class TarjetaPlatoData(
 
+    var id: Int,
     @DrawableRes val imagenPlato: Int,
     val nombrePlato: String,
     val descripcion: String,
@@ -125,6 +126,7 @@ fun TarjetaPlatoPreview(){
     SaborExpressTheme(){
         TarjetaPlato(
             data = TarjetaPlatoData(
+                id = 1,
                 imagenPlato = R.drawable.burguer_tarjeta,
                 nombrePlato = "Hamburguesa con Queso y Lechuga",
                 descripcion = "Descripcion de una suculenta hamburguesa de ternera con queso y lechuga",

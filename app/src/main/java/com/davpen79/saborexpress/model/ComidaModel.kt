@@ -1,6 +1,7 @@
 package com.davpen79.saborexpress.model
 
-data class Comida(
+data class ComidaModel(
+    val id: Int,
     val imagenPlato: Int,
     val titulo: String,
     val descripcion: String,

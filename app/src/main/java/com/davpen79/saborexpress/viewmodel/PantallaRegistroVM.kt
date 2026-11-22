@@ -16,45 +16,45 @@ data class PantallaRegistroUIState(
 
     )
 
-class PantallaRegistroVM : ViewModel(){
+class PantallaRegistroVM : ViewModel() {
 
     private val _uiState = MutableStateFlow(PantallaRegistroUIState())
 
     val uiState: StateFlow<PantallaRegistroUIState> = _uiState.asStateFlow()
 
-    fun onEmailIntroducido(email: String){
+    fun onEmailIntroducido(email: String) {
         _uiState.update {
             it.copy(email = email)
         }
     }
 
-    fun onPasswordIntroducida(password: String){
+    fun onPasswordIntroducida(password: String) {
         _uiState.update {
             it.copy(password = password)
         }
     }
 
-    fun onCondicionesAceptadas(aceptaCondiciones: Boolean){
+    fun onCondicionesAceptadas(aceptaCondiciones: Boolean) {
         _uiState.update {
             it.copy(aceptaCondiciones = aceptaCondiciones)
         }
     }
 
-    fun onMedioPublicidad(medioPublicidad: MedioPublicidadEnum){
+    fun onMedioPublicidad(medioPublicidad: MedioPublicidadEnum) {
         _uiState.update {
             it.copy(medioPublicidad = medioPublicidad)
         }
     }
 
-    fun onIniciarSesionClick(){
+    fun onIniciarSesionClick() {
 
     }
 
-    fun onRegistrarUsuarioClick(){
+    fun onRegistrarUsuarioClick() {
 
     }
 
-    fun onRecuperarPasswordClick(){
+    fun onRecuperarPasswordClick() {
 
     }
 }

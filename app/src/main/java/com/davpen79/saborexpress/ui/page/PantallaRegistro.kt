@@ -42,18 +42,8 @@ import com.davpen79.saborexpress.R
 import com.davpen79.saborexpress.model.MedioPublicidadEnum
 import com.davpen79.saborexpress.ui.component.BotonPrincipal
 import com.davpen79.saborexpress.ui.component.BotonPrincipalData
-import com.davpen79.saborexpress.viewmodel.PantallaRegistroUIState
 import com.davpen79.saborexpress.viewmodel.PantallaRegistroVM
 import com.example.compose.SaborExpressTheme
-
-//data class PantallaRegistroData(
-//
-//    val onBotonPrincipalClick: () -> Unit,
-//    val onTextoClick: () -> Unit,
-//    val onBotonSecundario: () -> Unit
-//) {
-//
-//}
 
 @Composable
 fun PantallaRegistro(
@@ -61,33 +51,8 @@ fun PantallaRegistro(
     modifier: Modifier = Modifier
 ) {
 
-    val uiState by viewModel.uiState.collectAsState()
+    val state by viewModel.uiState.collectAsState()
 
-    PantallaRegistroContent(
-        uiState = uiState,
-        onEmailIntroducido = viewModel::onEmailIntroducido,
-        onPasswordIntroducida = viewModel::onPasswordIntroducida,
-        onIniciarSesion = viewModel::onIniciarSesionClick,
-        onRegistrarUsuario = viewModel::onRegistrarUsuarioClick,
-        onRecuperarPassword = viewModel::onRecuperarPasswordClick,
-        onAceptarCondiciones = viewModel::onCondicionesAceptadas,
-        onMedioPublicidad = viewModel::onMedioPublicidad,
-        modifier = modifier
-    )
-}
-
-@Composable
-fun PantallaRegistroContent(
-    uiState: PantallaRegistroUIState,
-    onEmailIntroducido: (String) -> Unit,
-    onPasswordIntroducida: (String) -> Unit,
-    onIniciarSesion: () -> Unit,
-    onRegistrarUsuario: () -> Unit,
-    onRecuperarPassword: () -> Unit,
-    onAceptarCondiciones: (Boolean) -> Unit,
-    onMedioPublicidad: (MedioPublicidadEnum) -> Unit,
-    modifier: Modifier = Modifier
-) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -115,8 +80,8 @@ fun PantallaRegistroContent(
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text(text = stringResource(R.string.placeholdercorreo)) },
-                value = uiState.email,
-                onValueChange = onEmailIntroducido,
+                value = state.email,
+                onValueChange = viewModel::onEmailIntroducido,
                 colors = colors(
                     focusedContainerColor = MaterialTheme.colorScheme.onPrimary,
                     unfocusedContainerColor = MaterialTheme.colorScheme.onPrimary,
@@ -145,8 +110,8 @@ fun PantallaRegistroContent(
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text(text = stringResource(R.string.placeholderpassword)) },
-                value = uiState.password,
-                onValueChange = onPasswordIntroducida,
+                value = state.password,
+                onValueChange = viewModel::onPasswordIntroducida,
                 visualTransformation = if (mostrarPassword) {
                     VisualTransformation.None
                 } else {
@@ -186,7 +151,7 @@ fun PantallaRegistroContent(
             data = BotonPrincipalData(
                 icono = null,
                 texto = stringResource(R.string.iniciarsesion),
-                onBotonClick = onIniciarSesion,
+                onBotonClick = viewModel::onIniciarSesionClick,
             ),
             modifier = Modifier
                 .fillMaxWidth()
@@ -194,13 +159,13 @@ fun PantallaRegistroContent(
         )
 
         TextButton(
-            onClick = onRecuperarPassword
+            onClick = viewModel::onRecuperarPasswordClick
         ) {
             Text(text = stringResource(R.string.recuperarpass))
         }
 
         OutlinedButton(
-            onClick = onRegistrarUsuario,
+            onClick = viewModel::onRegistrarUsuarioClick,
             shape = RoundedCornerShape(10.dp),
             border = BorderStroke(width = 2.dp, color = MaterialTheme.colorScheme.primaryContainer),
             modifier = Modifier
@@ -217,7 +182,8 @@ fun PantallaRegistroContent(
         //var checked by remember { mutableStateOf(false) }
 
         Row() {
-            Checkbox(checked = uiState.aceptaCondiciones, onCheckedChange = onAceptarCondiciones)
+            Checkbox(checked = state.aceptaCondiciones,
+                onCheckedChange = viewModel::onCondicionesAceptadas)
             Text(
                 text = stringResource(R.string.terms)
             )
@@ -240,9 +206,9 @@ fun PantallaRegistroContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
-                    selected = uiState.medioPublicidad == MedioPublicidadEnum.EMAIL,
+                    selected = state.medioPublicidad == MedioPublicidadEnum.EMAIL,
                     onClick = {
-                        onMedioPublicidad(MedioPublicidadEnum.EMAIL)
+                        viewModel.onMedioPublicidad(MedioPublicidadEnum.EMAIL)
                     }
                 )
                 Text(text = stringResource(R.string.promocioncorreo))
@@ -252,9 +218,9 @@ fun PantallaRegistroContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
-                    selected = uiState.medioPublicidad == MedioPublicidadEnum.WHATSAPP,
+                    selected = state.medioPublicidad == MedioPublicidadEnum.WHATSAPP,
                     onClick = {
-                        onMedioPublicidad(MedioPublicidadEnum.WHATSAPP)
+                        viewModel.onMedioPublicidad(MedioPublicidadEnum.WHATSAPP)
                     }
                 )
                 Text(text = stringResource(R.string.promocionwhatsapp))
@@ -264,9 +230,9 @@ fun PantallaRegistroContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
-                    selected = uiState.medioPublicidad == MedioPublicidadEnum.NINGUNO,
+                    selected = state.medioPublicidad == MedioPublicidadEnum.NINGUNO,
                     onClick = {
-                        onMedioPublicidad(MedioPublicidadEnum.NINGUNO)
+                        viewModel.onMedioPublicidad(MedioPublicidadEnum.NINGUNO)
                     }
                 )
                 Text(text = stringResource(R.string.promocionnada))
@@ -282,22 +248,7 @@ fun PantallaRegistroContent(
 @Composable
 fun PantallaRegistroPreview() {
     SaborExpressTheme() {
-        PantallaRegistroContent(
-            uiState = PantallaRegistroUIState(
-                email = "usuario@gmail.com",
-                password = "12345678",
-                aceptaCondiciones = true,
-                medioPublicidad = MedioPublicidadEnum.NINGUNO
-            ),
-            onEmailIntroducido = {},
-            onPasswordIntroducida = {},
-            onIniciarSesion = {},
-            onRegistrarUsuario = {},
-            onRecuperarPassword = {},
-            onAceptarCondiciones = {},
-            onMedioPublicidad = {}
-
-        )
+        PantallaRegistro()
 
     }
 }
