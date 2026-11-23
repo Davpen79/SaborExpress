@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.update
 data class PantallaRegistroUIState(
 
     val email: String = "",
+    val emailError: String? = null,
     val password: String = "",
+    val passwordError: String? = null,
     val aceptaCondiciones: Boolean = false,
     val medioPublicidad: MedioPublicidadEnum = MedioPublicidadEnum.NINGUNO,
 
@@ -23,15 +25,19 @@ class PantallaRegistroVM : ViewModel() {
     val uiState: StateFlow<PantallaRegistroUIState> = _uiState.asStateFlow()
 
     fun onEmailIntroducido(email: String) {
+        //_uiState.value = _uiState.value.copy(emailError = null)
         _uiState.update {
             it.copy(email = email)
         }
+        validateForm()
     }
 
     fun onPasswordIntroducida(password: String) {
+        //_uiState.value = _uiState.value.copy(passwordError = null)
         _uiState.update {
             it.copy(password = password)
         }
+        validateForm()
     }
 
     fun onCondicionesAceptadas(aceptaCondiciones: Boolean) {
@@ -56,5 +62,15 @@ class PantallaRegistroVM : ViewModel() {
 
     fun onRecuperarPasswordClick() {
 
+    }
+
+    private fun validateForm(){
+        _uiState.value = _uiState.value.copy(emailError = null, passwordError = null)
+        if (_uiState.value.email.isEmpty()){
+            _uiState.value = _uiState.value.copy(emailError = "El email no puede estar vacio")
+        }
+        if (_uiState.value.password.isEmpty()){
+            _uiState.value = _uiState.value.copy(passwordError = "La contraseña no puede estar vacia")
+        }
     }
 }

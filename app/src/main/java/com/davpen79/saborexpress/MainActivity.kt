@@ -57,12 +57,20 @@ class MainActivity : ComponentActivity() {
                             NavigationDrawerItem(
                                 label = { Text("Seleccion de Plato") },
                                 selected = false,
-                                onClick = { myNavController.navigate(RutaSeleccionPlato) }
+                                onClick = {
+                                    scope.launch {
+                                        drawerState.close()
+                                        myNavController.navigate(RutaSeleccionPlato) }
+                                }
                             )
                             NavigationDrawerItem(
                                 label = { Text("Registro") },
                                 selected = false,
-                                onClick = { myNavController.navigate(RutaRegistro) }
+                                onClick = {
+                                    scope.launch {
+                                        drawerState.close()
+                                        myNavController.navigate(RutaRegistro) }
+                                }
                             )
                         }
                     }

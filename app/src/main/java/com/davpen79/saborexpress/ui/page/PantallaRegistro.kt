@@ -81,6 +81,13 @@ fun PantallaRegistro(
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text(text = stringResource(R.string.placeholdercorreo)) },
                 value = state.email,
+                singleLine = true,
+                isError = state.emailError != null,
+                supportingText = {
+                    if (state.emailError != null){
+                        Text(state.emailError!!)
+                    }
+                },
                 onValueChange = viewModel::onEmailIntroducido,
                 colors = colors(
                     focusedContainerColor = MaterialTheme.colorScheme.onPrimary,
@@ -111,6 +118,13 @@ fun PantallaRegistro(
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text(text = stringResource(R.string.placeholderpassword)) },
                 value = state.password,
+                singleLine = true,
+                isError = state.passwordError != null,
+                supportingText = {
+                    if (state.passwordError != null){
+                        Text(state.passwordError!!)
+                    }
+                },
                 onValueChange = viewModel::onPasswordIntroducida,
                 visualTransformation = if (mostrarPassword) {
                     VisualTransformation.None
