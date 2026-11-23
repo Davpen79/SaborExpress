@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -36,6 +38,7 @@ import com.example.compose.SaborExpressTheme
 @Composable
 fun PantallaSeleccionPlato(
     viewModel: PlatosListVM = viewModel(),
+    onCardClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -46,12 +49,12 @@ fun PantallaSeleccionPlato(
     }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
             .background(Color.White),
         //horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(12.dp)
 
     ) {
 
@@ -66,14 +69,15 @@ fun PantallaSeleccionPlato(
         Text(
             text = stringResource(R.string.hazseleccion),
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 22.sp,
+            fontSize = 20.sp,
             textAlign = TextAlign.Left,
-            modifier = Modifier.padding(10.dp, 10.dp, 10.dp, 0.dp)
+            modifier = Modifier.padding(5.dp, 5.dp, 5.dp, 0.dp)
         )
 
         LazyColumn(
             modifier = Modifier
-                .fillMaxSize()
+                .weight(1f)
+                .fillMaxWidth()
                 .padding(8.dp)
                 .background(Color.White)
                 .border(width = 1.dp, Color.Black, shape = RoundedCornerShape(10.dp)),
@@ -83,6 +87,7 @@ fun PantallaSeleccionPlato(
             items(state.platosList.size) { index ->
                 TarjetaPlato(
                     data = platoModel2TarjetaPlatoData(listaPlatos[index]),
+                    onVistazo = onCardClick
                     //modifier = Modifier.padding(horizontal = 8.dp)
                 )
             }
@@ -100,8 +105,7 @@ fun platoModel2TarjetaPlatoData(platoModel: PlatoModel): TarjetaPlatoData{
         descripcion = platoModel.descripcion,
         precio = platoModel.precio,
         moneda = platoModel.moneda,
-        onAnhadir = platoModel.onAnhadir,
-        onVistazo = platoModel.onVistazo)
+        onAnhadir = platoModel.onAnhadir)
 }
 
 
@@ -109,7 +113,8 @@ fun platoModel2TarjetaPlatoData(platoModel: PlatoModel): TarjetaPlatoData{
 @Composable
 fun PantallaSeleccionPlatoPreview() {
     SaborExpressTheme() {
-        PantallaSeleccionPlato()
+        PantallaSeleccionPlato(
+            onCardClick = {})
 
     }
 }

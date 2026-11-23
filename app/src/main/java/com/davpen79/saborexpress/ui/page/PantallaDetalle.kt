@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,6 +39,7 @@ import com.davpen79.saborexpress.viewmodel.PlatoDetalleVM
 @Composable
 fun PantallaDetalle(
     id: Int,
+    onGoBack: () -> Unit,
     viewModel: PlatoDetalleVM = viewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -56,7 +58,7 @@ fun PantallaDetalle(
             modifier = modifier
                 .fillMaxSize()
                 .padding(16.dp)
-                .background(onPrimaryLight),
+                .background(MaterialTheme.colorScheme.onPrimary),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(6.dp),
 
@@ -66,7 +68,7 @@ fun PantallaDetalle(
                 data = BoxImagenPlatoData(
                     imagenPlato = comida.imagenPlato,
                     onIconoDerecho = viewModel::onIconoDerechoClick,
-                    onIconoIzquierdo = viewModel::onIconoIzquierdoClick
+                    onIconoIzquierdo = {onGoBack()}
                 ),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -201,7 +203,8 @@ fun PantallaDetalle(
 fun PantallaDetallePreview() {
     SaborExpressTheme() {
         PantallaDetalle(
-            id = 7
+            id = 7,
+            onGoBack = {}
         )
     }
 }

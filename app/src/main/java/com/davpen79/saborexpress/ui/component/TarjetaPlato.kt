@@ -45,32 +45,40 @@ data class TarjetaPlatoData(
     val descripcion: String,
     val precio: String,
     val moneda: Int,
-    val onAnhadir: () -> Unit,
-    val onVistazo: () -> Unit
+    val onAnhadir: () -> Unit
 
 )
 
 @Composable
 fun TarjetaPlato(
     data: TarjetaPlatoData,
+    onVistazo: (Int) -> Unit = {},
     modifier: Modifier = Modifier
-){
-    Card(shape = RoundedCornerShape(10.dp) ,
+) {
+    Card(
+        shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
-        modifier = Modifier.fillMaxWidth()
-        .border(width = 1.dp, Color.Black, shape = RoundedCornerShape(10.dp)) ) {
-        Row(verticalAlignment =  Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .border(width = 1.dp, Color.Black, shape = RoundedCornerShape(10.dp)),
+        onClick = { onVistazo(data.id) }
+    ){
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp)
-                .height(80.dp)) {
+                .height(80.dp)
+        ) {
 
             Image(
                 painter = painterResource(data.imagenPlato),
                 contentDescription = stringResource(R.string.imagen_de_plato),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.height(80.dp).clip(RoundedCornerShape(10.dp))
+                modifier = Modifier
+                    .height(80.dp)
+                    .clip(RoundedCornerShape(10.dp))
 
             )
 
@@ -111,8 +119,10 @@ fun TarjetaPlato(
                         Modifier.size(20.dp)
                     )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = stringResource(R.string.anhadir),
-                        maxLines = 1)
+                    Text(
+                        text = stringResource(R.string.anhadir),
+                        maxLines = 1
+                    )
                 }
             }
 
@@ -122,8 +132,8 @@ fun TarjetaPlato(
 
 @Preview
 @Composable
-fun TarjetaPlatoPreview(){
-    SaborExpressTheme(){
+fun TarjetaPlatoPreview() {
+    SaborExpressTheme() {
         TarjetaPlato(
             data = TarjetaPlatoData(
                 id = 1,
@@ -132,8 +142,7 @@ fun TarjetaPlatoPreview(){
                 descripcion = "Descripcion de una suculenta hamburguesa de ternera con queso y lechuga",
                 precio = "8",
                 moneda = R.string.simboloMoneda,
-                onAnhadir = {},
-                onVistazo = {}
+                onAnhadir = {}
             )
         )
     }
