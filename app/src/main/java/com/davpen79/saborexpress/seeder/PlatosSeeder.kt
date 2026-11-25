@@ -137,3 +137,15 @@ val listaPlatos = listOf(
         onVistazo = {}
     )
 )
+
+fun searchPlatosByName(name: String): List<PlatoModel> {
+
+    val textoBusqueda = name.trim()//Atencion: elimina los espacios al pricipio y al final
+
+    return listaPlatos.filter {
+        it.nombrePlato.contains(
+            textoBusqueda,
+            ignoreCase = true //Atencion: asi no distingue mayusculas o minusculas
+        )
+    }
+}

@@ -169,11 +169,12 @@ fun PantallaRegistro(
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(40.dp, 20.dp)
+                .padding(40.dp, 0.dp)
         )
 
         TextButton(
-            onClick = viewModel::onRecuperarPasswordClick
+            onClick = viewModel::onRecuperarPasswordClick,
+            modifier = Modifier.padding(10.dp,0.dp)
         ) {
             Text(text = stringResource(R.string.recuperarpass))
         }
@@ -184,7 +185,7 @@ fun PantallaRegistro(
             border = BorderStroke(width = 2.dp, color = MaterialTheme.colorScheme.primaryContainer),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(40.dp, 20.dp)
+                .padding(40.dp, 8.dp)
         ) {
             Text(
                 text = stringResource(R.string.crearcuenta),
@@ -207,7 +208,7 @@ fun PantallaRegistro(
 
         Column(
             modifier = Modifier
-                .padding(8.dp, 14.dp)
+                .padding(8.dp, 10.dp)
                 .selectableGroup()
         ) {
 

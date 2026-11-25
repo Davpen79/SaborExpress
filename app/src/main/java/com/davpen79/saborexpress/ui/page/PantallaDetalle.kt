@@ -32,7 +32,6 @@ import com.davpen79.saborexpress.ui.component.ColumnaDescripcionData
 import com.davpen79.saborexpress.ui.component.RowPrecio
 import com.davpen79.saborexpress.ui.component.RowPrecioData
 import com.example.compose.SaborExpressTheme
-import com.example.compose.onPrimaryLight
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.davpen79.saborexpress.viewmodel.PlatoDetalleVM
 

@@ -34,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davpen79.saborexpress.R
 import com.example.compose.SaborExpressTheme
-import com.example.compose.primaryContainerLight
 
 
 data class TarjetaPlatoData(

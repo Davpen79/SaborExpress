@@ -34,4 +34,6 @@
     <string name="usericon">Icono de usuario</string>
     <string name="home">Icono de Home</string>
     <string name="pantalla_no_implementada">Pantalla no implementada</string>
+    <string name="funcionalidad_no_implementada">Funcionalidad no Implementada</string>
+    <string name="busqueda_de_plato">Busqueda de plato</string>
 </resources>

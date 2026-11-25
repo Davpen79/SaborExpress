@@ -10,12 +10,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.davpen79.saborexpress.R
 import com.davpen79.saborexpress.model.PlatoModel
-import com.davpen79.saborexpress.seeder.listaPlatos
 import com.davpen79.saborexpress.ui.component.ColumnaDirecciones
 import com.davpen79.saborexpress.ui.component.ColumnaDireccionesData
 import com.davpen79.saborexpress.ui.component.TarjetaPlato
@@ -66,6 +65,16 @@ fun PantallaSeleccionPlato(
             modifier = Modifier.padding(8.dp)
         )
 
+        OutlinedTextField(
+            value = state.searchText,
+            onValueChange = viewModel::onSearchTextChange,
+            placeholder = {
+                Text(stringResource(R.string.busqueda_de_plato))
+            },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth().padding(start = 8.dp, end = 8.dp,bottom = 6.dp)
+        )
+
         Text(
             text = stringResource(R.string.hazseleccion),
             fontWeight = FontWeight.ExtraBold,
@@ -86,7 +95,7 @@ fun PantallaSeleccionPlato(
         ) {
             items(state.platosList.size) { index ->
                 TarjetaPlato(
-                    data = platoModel2TarjetaPlatoData(listaPlatos[index]),
+                    data = platoModel2TarjetaPlatoData(state.platosList[index]),
                     onVistazo = onCardClick
                     //modifier = Modifier.padding(horizontal = 8.dp)
                 )

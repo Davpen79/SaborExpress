@@ -9,7 +9,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Construction
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -60,7 +64,8 @@ class MainActivity : ComponentActivity() {
                                 onClick = {
                                     scope.launch {
                                         drawerState.close()
-                                        myNavController.navigate(RutaSeleccionPlato) }
+                                        myNavController.navigate(RutaSeleccionPlato)
+                                    }
                                 }
                             )
                             NavigationDrawerItem(
@@ -69,7 +74,8 @@ class MainActivity : ComponentActivity() {
                                 onClick = {
                                     scope.launch {
                                         drawerState.close()
-                                        myNavController.navigate(RutaRegistro) }
+                                        myNavController.navigate(RutaRegistro)
+                                    }
                                 }
                             )
                         }
@@ -106,6 +112,21 @@ class MainActivity : ComponentActivity() {
 
                         snackbarHost = {
                             SnackbarHost(sbHostState)
+                        },
+
+                        floatingActionButton = {
+                            FloatingActionButton(
+                                onClick = {
+                                    scope.launch {
+                                        sbHostState.showSnackbar(getString(R.string.funcionalidad_no_implementada))
+                                    }
+                                }
+                            ) {
+                                Icon(
+                                    Icons.Default.Construction,
+                                    contentDescription = "En construccion"
+                                )
+                            }
                         },
 
                         modifier = Modifier.fillMaxSize()
