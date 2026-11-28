@@ -4,44 +4,139 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Construction
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.davpen79.saborexpress.ui.theme.SaborExpressTheme
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
+import com.davpen79.saborexpress.ui.component.NavGraphComponent
+import com.davpen79.saborexpress.ui.component.NavigationBar
+import com.davpen79.saborexpress.ui.component.RutaRegistro
+import com.davpen79.saborexpress.ui.component.RutaSeleccionPlato
+import com.davpen79.saborexpress.ui.component.TopBar
+import com.example.compose.SaborExpressTheme
+import kotlinx.coroutines.launch
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SaborExpressTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+
+            val myNavController = rememberNavController()
+
+            val sbHostState = remember { SnackbarHostState() }
+            val scope = rememberCoroutineScope()
+
+            SaborExpressTheme() {
+                //guarda el estado del menu lateral
+                val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+                //drawerState.open() y drawerState.close() son funciones suspendidas y deben ejecutarse dentro de una corrutina
+                //val scope = rememberCoroutineScope()
+                ModalNavigationDrawer(
+                    drawerState = drawerState,
+                    drawerContent = {
+                        ModalDrawerSheet() {
+                            Text("Menú", modifier = Modifier.padding(16.dp))
+
+                            NavigationDrawerItem(
+                                label = { Text("Seleccion de Plato") },
+                                selected = false,
+                                onClick = {
+                                    scope.launch {
+                                        drawerState.close()
+                                        myNavController.navigate(RutaSeleccionPlato)
+                                    }
+                                }
+                            )
+                            NavigationDrawerItem(
+                                label = { Text("Registro") },
+                                selected = false,
+                                onClick = {
+                                    scope.launch {
+                                        drawerState.close()
+                                        myNavController.navigate(RutaRegistro)
+                                    }
+                                }
+                            )
+                        }
+                    }
+                ) {
+                    Scaffold(
+
+                        topBar = {
+                            Column() {
+                                Spacer(modifier = Modifier.height(24.dp))
+                                TopBar(
+                                    onUserClick = { myNavController.navigate(RutaRegistro) },
+                                    onMenuClick = {
+                                        scope.launch { drawerState.open() }
+                                    }
+                                )
+                            }
+                        },
+
+                        bottomBar = {
+                            Column() {
+                                NavigationBar(
+                                    onLeftClick = {
+                                        scope.launch {
+                                            sbHostState.showSnackbar(getString(R.string.pantalla_no_implementada))
+                                        }
+                                    },
+                                    onCenterClick = { myNavController.navigate(RutaSeleccionPlato) },
+                                    onRightClick = { myNavController.navigate(RutaRegistro) }
+                                )
+                                Spacer(modifier = Modifier.height(20.dp))
+                            }
+                        },
+
+                        snackbarHost = {
+                            SnackbarHost(sbHostState)
+                        },
+
+                        floatingActionButton = {
+                            FloatingActionButton(
+                                onClick = {
+                                    scope.launch {
+                                        sbHostState.showSnackbar(getString(R.string.funcionalidad_no_implementada))
+                                    }
+                                }
+                            ) {
+                                Icon(
+                                    Icons.Default.Construction,
+                                    contentDescription = "En construccion"
+                                )
+                            }
+                        },
+
+                        modifier = Modifier.fillMaxSize()
+
+                    ) { innerPadding ->
+
+                        NavGraphComponent(myNavController, innerPadding)
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SaborExpressTheme {
-        Greeting("Android")
     }
 }
