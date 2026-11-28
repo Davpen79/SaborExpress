@@ -15,7 +15,10 @@ data class PantallaRegistroUIState(
     val passwordError: String? = null,
     val aceptaCondiciones: Boolean = false,
     val medioPublicidad: MedioPublicidadEnum = MedioPublicidadEnum.NINGUNO,
-
+    //Añadido temporalmente
+    val comidasDisponibles: List<String> = listOf("Comida Mexicana","Comida Italiana","Comida Asiatica","Comida Rapida"),
+    val comidaFavorita: String = "",
+    val isFavoritoExpanded: Boolean = false
     )
 
 class PantallaRegistroVM : ViewModel() {
@@ -71,6 +74,19 @@ class PantallaRegistroVM : ViewModel() {
         }
         if (_uiState.value.password.isEmpty()){
             _uiState.value = _uiState.value.copy(passwordError = "La contraseña no puede estar vacia")
+        }
+    }
+    //Añadido temporalmente
+    fun onFavoritoExpandedChange(it: Boolean) {
+        _uiState.value = _uiState.value.copy(isFavoritoExpanded = it)
+    }
+
+    fun onComidaFavoritaSeleccionada(comida: String) {
+        _uiState.update {
+            it.copy(
+                comidaFavorita = comida,
+                isFavoritoExpanded = false
+            )
         }
     }
 }

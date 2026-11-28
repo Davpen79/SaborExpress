@@ -8,16 +8,24 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -31,6 +39,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -45,25 +54,29 @@ import com.davpen79.saborexpress.ui.component.BotonPrincipalData
 import com.davpen79.saborexpress.viewmodel.PantallaRegistroVM
 import com.example.compose.SaborExpressTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PantallaRegistro(
     viewModel: PantallaRegistroVM = viewModel(),
     modifier: Modifier = Modifier
 ) {
-
+    val scrollState = rememberScrollState() // Añadido para hacer temporalmente scrolleable
     val state by viewModel.uiState.collectAsState()
 
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(14.dp)
-            .background(MaterialTheme.colorScheme.onPrimary),
+            .background(MaterialTheme.colorScheme.onPrimary)
+            //Añadido para hacer temporalmente scrolleable
+            .verticalScroll(
+                scrollState,
+                enabled = true
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp)
 
     ) {
-
-        //var correoElectronico by remember { mutableStateOf("") }
 
         Column(
             modifier = Modifier
@@ -84,7 +97,7 @@ fun PantallaRegistro(
                 singleLine = true,
                 isError = state.emailError != null,
                 supportingText = {
-                    if (state.emailError != null){
+                    if (state.emailError != null) {
                         Text(state.emailError!!)
                     }
                 },
@@ -98,8 +111,6 @@ fun PantallaRegistro(
             )
         }
 
-
-        //var password by remember { mutableStateOf("") }
         var mostrarPassword by rememberSaveable { mutableStateOf(false) }
 
         Column(
@@ -121,7 +132,7 @@ fun PantallaRegistro(
                 singleLine = true,
                 isError = state.passwordError != null,
                 supportingText = {
-                    if (state.passwordError != null){
+                    if (state.passwordError != null) {
                         Text(state.passwordError!!)
                     }
                 },
@@ -174,7 +185,7 @@ fun PantallaRegistro(
 
         TextButton(
             onClick = viewModel::onRecuperarPasswordClick,
-            modifier = Modifier.padding(10.dp,0.dp)
+            modifier = Modifier.padding(10.dp, 0.dp)
         ) {
             Text(text = stringResource(R.string.recuperarpass))
         }
@@ -197,8 +208,10 @@ fun PantallaRegistro(
         //var checked by remember { mutableStateOf(false) }
 
         Row() {
-            Checkbox(checked = state.aceptaCondiciones,
-                onCheckedChange = viewModel::onCondicionesAceptadas)
+            Checkbox(
+                checked = state.aceptaCondiciones,
+                onCheckedChange = viewModel::onCondicionesAceptadas
+            )
             Text(
                 text = stringResource(R.string.terms)
             )
@@ -254,6 +267,38 @@ fun PantallaRegistro(
             }
         }
 
+        //Añadido temporalmente
+        ExposedDropdownMenuBox(
+            expanded = state.isFavoritoExpanded,
+            onExpandedChange = {
+                viewModel.onFavoritoExpandedChange(it)
+            }
+        ) {
+            OutlinedTextField(
+                value = state.comidaFavorita,
+                onValueChange = {},
+                readOnly = true,
+                label = {Text("Comida Favorita")},
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = state.isFavoritoExpanded)},
+                modifier = Modifier.menuAnchor(type = ExposedDropdownMenuAnchorType.PrimaryNotEditable)
+            )
+            ExposedDropdownMenu(
+                expanded = state.isFavoritoExpanded,
+                onDismissRequest = {viewModel.onFavoritoExpandedChange(false)}
+            ) {
+                state.comidasDisponibles.forEach { it ->
+                    DropdownMenuItem(
+                        text = {Text(it)},
+                        onClick = {
+                            viewModel.onComidaFavoritaSeleccionada(it)
+                            viewModel.onFavoritoExpandedChange(false)
+                        }
+                    )
+                }
+            }
+
+        }
+        //FIN de Añadido
 
     }
 
